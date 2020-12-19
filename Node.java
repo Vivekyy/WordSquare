@@ -43,11 +43,11 @@ public class Node implements Comparable<Node>{
             return getFrequency(parent);
         }
         else if (depth == 4 || depth == 7){
-            //Independent probability
-            return getFrequency() + getFrequency(parent.parent.parent) - getFrequency()*getFrequency(parent.parent.parent);
+            //Independent probability => P(A^B) = P(A)*P(B)
+            return getFrequency()*getFrequency(parent.parent.parent);
         }
         else if (depth == 5 || depth == 6 || depth == 8){
-            return getFrequency(parent) + getFrequency(parent.parent.parent) - getFrequency(parent)*getFrequency(parent.parent.parent);
+            return getFrequency(parent)*getFrequency(parent.parent.parent);
         }
         else if (depth == 9){
             if (isValid()){
