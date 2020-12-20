@@ -119,7 +119,7 @@ public class Node implements Comparable<Node>{
     
     public ArrayList<Node> setSuccessors(){
         if (depth == 9){
-            return;
+            return null;
         }
         
         Node nextNode;
