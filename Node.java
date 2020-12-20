@@ -202,6 +202,10 @@ public class Node implements Comparable<Node>{
         return heuristic;
     }
     
+    public char getData(){
+        return data;
+    }
+    
     @Override
     public int compareTo(Node a){
         if (heuristic > a.heuristic){
