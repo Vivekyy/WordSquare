@@ -32,30 +32,35 @@ public class Node implements Comparable<Node>{
     //Evaluating heuristic
     
     public float findHeuristic(){
+        //Want heuristic to go from big to small as you get closer to goal
         if (isValid() == false){
-            return 0;
+            //Farthest from goal
+            return 1;
         }
         
         else if (depth == 1){
-            return getFrequency();
+            return 1-getFrequency();
         }
         else if (depth == 2 || depth == 3){
-            return getFrequency(parent);
+            return 1-getFrequency(parent);
         }
         else if (depth == 4 || depth == 7){
             //Independent probability => P(A^B) = P(A)*P(B)
-            return getFrequency()*getFrequency(parent.parent.parent);
+            return 1-getFrequency()*getFrequency(parent.parent.parent);
         }
         else if (depth == 5 || depth == 6 || depth == 8){
-            return getFrequency(parent)*getFrequency(parent.parent.parent);
+            return 1-getFrequency(parent)*getFrequency(parent.parent.parent);
         }
         else if (depth == 9){
             if (isValid()){
-                //Return success
+                //At goal so heuristic = 0
+                return 0;
+            }
+            else{
                 return 1;
             }
         }
-        return 0;
+        return 1;
     }
     
     private float getFrequency(Node a){
@@ -112,7 +117,7 @@ public class Node implements Comparable<Node>{
     
     //Expanding a node
     
-    public void setSuccessors(){
+    public ArrayList<Node> setSuccessors(){
         if (depth == 9){
             return;
         }
@@ -125,9 +130,7 @@ public class Node implements Comparable<Node>{
             nextNode = new Node(remainingLetters.get(i), this, newLetters);
             Children.add(nextNode);
         }
-        //Need to get heuristics from biggest to smallest probability
-        Collections.sort(Children, Collections.reverseOrder());
-        return;
+        return Children;
     }
     
     //Checking validity of a node
@@ -193,6 +196,10 @@ public class Node implements Comparable<Node>{
     
     public int getDepth(){
         return depth;
+    }
+    
+    public float getHeuristic(){
+        return heuristic;
     }
     
     @Override
