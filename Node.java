@@ -66,10 +66,10 @@ public class Node implements Comparable<Node>{
     private float getFrequency(Node a){
         
         //Get character number in alphabet (i.e. 'a' => 1)
-        int aValue = Character.getNumericValue(a.data) - 9;
+        int aValue = Character.getNumericValue(a.getData()) - 9;
         int bValue = Character.getNumericValue(data) - 9;
         
-        int lineNumber = 24 + 24*aValue + bValue;
+        int lineNumber = 26*aValue + bValue;
         
         Scanner sc;
         try{
@@ -168,8 +168,8 @@ public class Node implements Comparable<Node>{
     private boolean checkWord(Node first, Node second){
         
         StringBuilder sb = new StringBuilder();
-        sb.append(first.data);
-        sb.append(second.data);
+        sb.append(first.getData());
+        sb.append(second.getData());
         sb.append(data);
         
         String word = sb.toString();
@@ -208,6 +208,10 @@ public class Node implements Comparable<Node>{
         return data;
     }
     
+    public ArrayList<Character> getRemainingLetters(){
+        return remainingLetters;
+    }
+
     @Override
     public int compareTo(Node a){
         if (heuristic > a.heuristic){

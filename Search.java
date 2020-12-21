@@ -17,12 +17,30 @@ public class Search{
     }
     
     public Node findGoal(){
+        int depth = 0;
         while(!open.isEmpty()){
             
             Collections.sort(open);
             
             Node current = open.remove(0);
             closed.add(current);
+            
+            /*
+            //For tracking progress
+            Node tracker = current;
+            String progress = "";
+            while (tracker != root){
+                progress += Character.toString(tracker.getData()) + " ";
+                tracker = tracker.parent;
+            }
+            System.out.println(progress);
+                        
+            //Depth tracking
+            if(current.getDepth() > depth){
+                depth++;
+                System.out.println(depth);
+            }
+            */
             
             ArrayList<Node> successors = current.setSuccessors();
             
