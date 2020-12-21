@@ -24,7 +24,7 @@ public class Node implements Comparable<Node>{
         else{
             this.depth = parent.getDepth() + 1;
         }
-        this.Children = null;
+        this.Children = new ArrayList<Node>();
         this.heuristic = findHeuristic();
         this.remainingLetters = remainingLetters;
     }
@@ -86,7 +86,8 @@ public class Node implements Comparable<Node>{
                 sc.nextLine();
             }
         }
-        
+        sc.next();
+        sc.next();
         return sc.nextFloat();
         
     }
@@ -110,7 +111,8 @@ public class Node implements Comparable<Node>{
                 sc.nextLine();
             }
         }
-        
+        sc.next();
+        sc.next();
         return sc.nextFloat();
         
     }
@@ -119,13 +121,13 @@ public class Node implements Comparable<Node>{
     
     public ArrayList<Node> setSuccessors(){
         if (depth == 9){
-            return null;
+            return Children;
         }
         
         Node nextNode;
         ArrayList<Character> newLetters;
         for (int i=0; i<remainingLetters.size(); i++){
-            newLetters = remainingLetters;
+            newLetters = new ArrayList<>(remainingLetters);
             newLetters.remove(i);
             nextNode = new Node(remainingLetters.get(i), this, newLetters);
             Children.add(nextNode);

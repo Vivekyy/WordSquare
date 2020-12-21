@@ -44,7 +44,7 @@ public class Search{
                     }
                 }
                 if (present == false){
-                    for(int c=0; c<open.size(); c++){
+                    for(int c=0; c<closed.size(); c++){
                         if (successors.get(a) == closed.get(c)){
                             present = true;
                             break;

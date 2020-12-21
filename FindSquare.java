@@ -9,7 +9,7 @@ public class FindSquare{
     
         ArrayList<Character> letters = new ArrayList<Character>();
         for(int i=0; i<args.length; i++){
-            letters.add(args[i].charAt(0));
+            letters.add(Character.toLowerCase(args[i].charAt(0)));
         }
     
         Search findSquare = new Search(letters);
